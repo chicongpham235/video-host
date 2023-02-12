@@ -91,9 +91,6 @@ const camera = new Camera(cameraElement, {
 // camera.start();
 // cameraElement.style.display = "inline";
 
-video.autoplay = true;
-video.pause();
-
 const videoWorks = !!document.createElement("video").canPlayType;
 if (videoWorks) {
   video.controls = false;
