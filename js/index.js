@@ -33,6 +33,7 @@ const playbackSlider = document.getElementById("playbackRate");
 const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
+console.log(navigator.userAgent);
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const isMobile =
