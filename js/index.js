@@ -309,12 +309,13 @@ function animatePlayback() {
 // If the browser is currently in fullscreen mode,
 // then it should exit and vice versa.
 function toggleFullScreen() {
-  playsinline = !playsinline;
-  // if (iOS) {
-  //   video.webkitEnterFullscreen();
-  //   video.enterFullscreen();
-  // }
-  video.setAttribute("playsinline", !video);
+  // playsinline = !playsinline;
+  if (iOS) {
+    video.webkitEnterFullscreen();
+    video.enterFullscreen();
+  }
+  // video.setAttribute("playsinline", !playsinline);
+  console.log("hihi");
   if (document.fullscreenElement) {
     document.exitFullscreen();
     console.log("exit full");
