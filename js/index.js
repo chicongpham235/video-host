@@ -71,8 +71,8 @@ const camera = new Camera(cameraElement, {
   // width: 1280,
   // height: 720,
 });
-camera.start();
-cameraElement.style.display = "inline";
+// camera.start();
+// cameraElement.style.display = "inline";
 
 // updateToggleControl();
 
@@ -300,27 +300,27 @@ function animatePlayback() {
     }
   );
 }
-console.log("test");
 
 // toggleFullScreen toggles the full screen state of the video
 // If the browser is currently in fullscreen mode,
 // then it should exit and vice versa.
 function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-    console.log("full");
-  } else if (document.webkitFullscreenElement) {
-    // Need this to support Safari
-    document.webkitExitFullscreen();
-    console.log("webkit full");
-  } else if (videoContainer.webkitRequestFullscreen) {
-    // Need this to support Safari
-    videoContainer.webkitRequestFullscreen();
-    console.log(1);
-  } else {
-    videoContainer.requestFullscreen();
-    console.log(2);
-  }
+  console.log(1);
+  // if (document.fullscreenElement) {
+  //   document.exitFullscreen();
+  //   console.log("exit full");
+  // } else if (document.webkitFullscreenElement) {
+  //   // Need this to support Safari
+  //   document.webkitExitFullscreen();
+  //   console.log("exit webkit full");
+  // } else if (videoContainer.webkitRequestFullscreen) {
+  //   // Need this to support Safari
+  //   videoContainer.webkitRequestFullscreen();
+  //   console.log('enter webkit full');
+  // } else {
+  //   videoContainer.requestFullscreen();
+  //   console.log('enter full');
+  // }
   console.log("hehe");
 }
 
@@ -396,7 +396,6 @@ function keyboardShortcuts(event) {
 }
 
 function findFaceMesh(results) {
-  console.log(1);
   canvasElement.width = camera.h.width;
   canvasElement.height = camera.h.height;
   canvasCtx.save();
@@ -497,7 +496,11 @@ function findFaceMesh(results) {
   }
 
   if (faces.length != 0) {
-    if (lfy - ley > 15 && rfy - rey > 15) {
+    if (lfy - ley > 15 && rfy - rey > 15 && !iOS) {
+      if (video.playbackRate < 2) {
+        if (!isLocked) defaultRate += 0.02;
+      }
+    } else if (lfy - ley > 5 && rfy - rey > 5 && iOS) {
       if (video.playbackRate < 2) {
         if (!isLocked) defaultRate += 0.02;
       }
