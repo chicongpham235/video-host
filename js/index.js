@@ -306,22 +306,21 @@ function animatePlayback() {
 // then it should exit and vice versa.
 function toggleFullScreen() {
   console.log(1);
-  // if (document.fullscreenElement) {
-  //   document.exitFullscreen();
-  //   console.log("exit full");
-  // } else if (document.webkitFullscreenElement) {
-  //   // Need this to support Safari
-  //   document.webkitExitFullscreen();
-  //   console.log("exit webkit full");
-  // } else if (videoContainer.webkitRequestFullscreen) {
-  //   // Need this to support Safari
-  //   videoContainer.webkitRequestFullscreen();
-  //   console.log('enter webkit full');
-  // } else {
-  //   videoContainer.requestFullscreen();
-  //   console.log('enter full');
-  // }
-  console.log("hehe");
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+    console.log("exit full");
+  } else if (document.webkitFullscreenElement) {
+    // Need this to support Safari
+    document.webkitExitFullscreen();
+    console.log("exit webkit full");
+  } else if (videoContainer.webkitRequestFullscreen) {
+    // Need this to support Safari
+    videoContainer.webkitRequestFullscreen();
+    console.log("enter webkit full");
+  } else {
+    videoContainer.requestFullscreen();
+    console.log("enter full");
+  }
 }
 
 // updateFullscreenButton changes the icon of the full screen button
@@ -500,7 +499,7 @@ function findFaceMesh(results) {
       if (video.playbackRate < 2) {
         if (!isLocked) defaultRate += 0.02;
       }
-    } else if (lfy - ley > 5 && rfy - rey > 5 && iOS) {
+    } else if (lfy - ley > 10 && rfy - rey > 10 && iOS) {
       if (video.playbackRate < 2) {
         if (!isLocked) defaultRate += 0.02;
       }
