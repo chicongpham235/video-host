@@ -1,5 +1,5 @@
 import { chain } from "https://cdn.jsdelivr.net/npm/@shlappas/itertools@2.1.1/dist/index.esm.js";
-
+console.log(1);
 const video = document.getElementById("video");
 const videoControls = document.getElementById("video-controls");
 const playButton = document.getElementById("play");
