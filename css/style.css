@@ -331,8 +331,8 @@ svg {
   position: absolute;
   bottom: 0;
   left: 0;
-  /* width: 240px;
-  height: 180px; */
+  width: 240px;
+  height: 180px;
   display: none;
 }
 
