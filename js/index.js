@@ -202,7 +202,7 @@ function formatTime(timeInSeconds) {
     seconds: result.substr(6, 2),
   };
 }
-console.log(1);
+
 // initializeVideo sets the video duration, and maximum value of the
 // progressBar
 function initializeVideo() {
