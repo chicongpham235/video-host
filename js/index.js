@@ -47,6 +47,25 @@ const LEFT_EYE_INDEXES = Array.from(new Set(chain(...FACEMESH_LEFT_EYE)));
 const RIGHT_EYE_INDEXES = Array.from(new Set(chain(...FACEMESH_RIGHT_EYE)));
 const FACE_OVAL_INDEXES = Array.from(new Set(chain(...FACEMESH_FACE_OVAL)));
 const LIPS_INDEXES = Array.from(new Set(chain(...FACEMESH_LIPS)));
+const browser = (function () {
+  let userAgent = navigator.userAgent;
+  let browserName;
+
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    browserName = "chrome";
+  } else if (userAgent.match(/firefox|fxios/i)) {
+    browserName = "firefox";
+  } else if (userAgent.match(/safari/i)) {
+    browserName = "safari";
+  } else if (userAgent.match(/opr\//i)) {
+    browserName = "opera";
+  } else if (userAgent.match(/edg/i)) {
+    browserName = "edge";
+  } else {
+    browserName = "No browser detection";
+  }
+  return browserName;
+})();
 
 const config = {
   locateFile: (file) => {
@@ -104,6 +123,7 @@ function togglePlay() {
 // depending on the playback state
 function updatePlayButton() {
   playbackIcons.forEach((icon) => icon.classList.toggle("hidden"));
+
   if (video.paused) {
     playButton.setAttribute("data-title", "Play (k)");
   } else {
@@ -191,6 +211,12 @@ function initializeVideo() {
   const time = formatTime(videoDuration);
   duration.innerText = `${time.minutes}:${time.seconds}`;
   duration.setAttribute("datetime", `${time.minutes}m ${time.seconds}s`);
+  if (browser == "safari") {
+    video.muted = true;
+    volume.value = 0;
+    volumeIcons[0].classList.remove("hidden");
+    volumeIcons[2].classList.add("hidden");
+  }
   if (iOS) volume.style.display = "none";
   updateToggleControl();
 }
@@ -315,21 +341,16 @@ function toggleFullScreen() {
     video.enterFullscreen();
   }
   // video.setAttribute("playsinline", !playsinline);
-  console.log("hihi");
   if (document.fullscreenElement) {
     document.exitFullscreen();
-    console.log("exit full");
   } else if (document.webkitFullscreenElement) {
     // Need this to support Safari
     document.webkitExitFullscreen();
-    console.log("exit webkit full");
   } else if (videoContainer.webkitRequestFullscreen) {
     // Need this to support Safari
     videoContainer.webkitRequestFullscreen();
-    console.log("enter webkit full");
   } else {
     videoContainer.requestFullscreen();
-    console.log("enter full");
   }
 }
 
