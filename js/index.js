@@ -109,13 +109,14 @@ function togglePlay() {
     video.controls = false;
     videoControls.classList.remove("hidden");
     firstPlay = false;
-  }
-  if (video.paused || video.ended) {
-    isPaused = false;
-    video.play();
   } else {
-    isPaused = true;
-    video.pause();
+    if (video.paused || video.ended) {
+      isPaused = false;
+      video.play();
+    } else {
+      isPaused = true;
+      video.pause();
+    }
   }
 }
 
