@@ -34,6 +34,7 @@ const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+var firstPlay = true;
 var cancelControl = true;
 var onCamera = false;
 var isLocked = false;
@@ -92,7 +93,7 @@ const camera = new Camera(cameraElement, {
 // cameraElement.style.display = "inline";
 
 const videoWorks = !!document.createElement("video").canPlayType;
-if (videoWorks) {
+if (videoWorks && !iOS) {
   video.controls = false;
   videoControls.classList.remove("hidden");
 }
@@ -103,6 +104,12 @@ if (videoWorks) {
 // If the video playback is paused or ended, the video is played
 // otherwise, the video is paused
 function togglePlay() {
+  if (firstPlay && iOS) {
+    video.play();
+    video.controls = false;
+    videoControls.classList.remove("hidden");
+    firstPlay = false;
+  }
   if (video.paused || video.ended) {
     isPaused = false;
     video.play();
