@@ -155,7 +155,7 @@ async function updateToggleControl() {
     isPaused = false;
     faceMesh.onResults(findFaceMesh);
   }
-  console.log(camera.g.id);
+  console.log(camera.g?.id);
   if (onCamera) {
     capture.setAttribute("data-title", "Hide Camera");
     cameraElement.style.display = "inline";
