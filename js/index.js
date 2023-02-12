@@ -34,6 +34,7 @@ const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+var playsinline = false;
 var cancelControl = true;
 var onCamera = false;
 var isLocked = false;
@@ -63,6 +64,7 @@ const solutionOptions = {
 
 faceMesh.setOptions(solutionOptions);
 
+video.setAttribute("playsinline", playsinline);
 cameraElement.setAttribute("playsinline", true);
 const camera = new Camera(cameraElement, {
   onFrame: async () => {
@@ -307,7 +309,9 @@ function animatePlayback() {
 // If the browser is currently in fullscreen mode,
 // then it should exit and vice versa.
 function toggleFullScreen() {
-  console.log(1);
+  console.log(playsinline);
+  if (iOS) playsinline = !playsinline;
+  video.setAttribute("playsinline", playsinline);
   if (document.fullscreenElement) {
     document.exitFullscreen();
     console.log("exit full");
@@ -323,8 +327,6 @@ function toggleFullScreen() {
     videoContainer.requestFullscreen();
     console.log("enter full");
   }
-  if (iOS) video.playsinline = !video.playsinline;
-  console.log(video.playsinline);
 }
 
 // updateFullscreenButton changes the icon of the full screen button
@@ -501,15 +503,15 @@ function findFaceMesh(results) {
   if (faces.length != 0) {
     if (lfy - ley > 15 && rfy - rey > 15 && !iOS) {
       if (video.playbackRate < 2) {
-        if (!isLocked) defaultRate += 0.02;
+        if (!isLocked) defaultRate += 0.01;
       }
     } else if (lfy - ley > 10 && rfy - rey > 10 && iOS) {
       if (video.playbackRate < 2) {
-        if (!isLocked) defaultRate += 0.02;
+        if (!isLocked) defaultRate += 0.01;
       }
     } else if (lfy - ley < -1 && rfy - rey < -1) {
       if (video.playbackRate > 0.25) {
-        if (!isLocked) defaultRate -= 0.02;
+        if (!isLocked) defaultRate -= 0.01;
       }
     } else if (re - lf < 10) {
       if (video.currentTime < video.duration) video.currentTime += 0.5;
