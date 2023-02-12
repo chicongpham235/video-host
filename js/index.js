@@ -34,9 +34,11 @@ const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
-const isMobile = navigator.userAgentData.mobile;
-console.log(isMobile);
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 var firstPlay = true;
 var cancelControl = true;
 var onCamera = false;
@@ -107,21 +109,13 @@ if (videoWorks && !iOS) {
 // If the video playback is paused or ended, the video is played
 // otherwise, the video is paused
 function togglePlay() {
-  if (firstPlay && iOS) {
+  if (video.paused || video.ended) {
+    isPaused = false;
     video.play();
-    video.controls = false;
-    videoControls.classList.remove("hidden");
-    firstPlay = false;
   } else {
-    if (video.paused || video.ended) {
-      isPaused = false;
-      video.play();
-    } else {
-      isPaused = true;
-      video.pause();
-    }
+    isPaused = true;
+    video.pause();
   }
-  if (video.paused) showControls();
 }
 
 // updatePlayButton updates the playback icon and tooltip
@@ -575,6 +569,17 @@ if (video.readyState > 0) {
   initializeVideo();
 }
 
+function tapScreen() {
+  if (firstPlay && iOS) {
+    video.play();
+    video.controls = false;
+    videoControls.classList.remove("hidden");
+    firstPlay = false;
+  }
+  if (videoControls.classList.contains("hide")) showControls();
+  else hideControls();
+}
+
 // Add eventlisteners here
 playButton.addEventListener(mytap, togglePlay);
 toggleControl.addEventListener("click", updateToggleControl);
@@ -586,8 +591,9 @@ video.addEventListener("loadedmetadata", initializeVideo);
 video.addEventListener("timeupdate", updateTimeElapsed);
 video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("volumechange", updateVolumeIcon);
-video.addEventListener(mytap, togglePlay);
-video.addEventListener("click", animatePlayback);
+if (!isMobile) video.addEventListener(mytap, togglePlay);
+if (isMobile) video.addEventListener(mytap, tapScreen);
+if (!isMobile) video.addEventListener("click", animatePlayback);
 video.addEventListener("mouseenter", showControls);
 video.addEventListener("mouseleave", hideControls);
 videoControls.addEventListener("mouseenter", showControls);
