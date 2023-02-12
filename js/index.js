@@ -64,6 +64,7 @@ const solutionOptions = {
 
 faceMesh.setOptions(solutionOptions);
 
+video.setAttribute("playsinline", playsinline);
 cameraElement.setAttribute("playsinline", true);
 const camera = new Camera(cameraElement, {
   onFrame: async () => {
@@ -308,11 +309,12 @@ function animatePlayback() {
 // If the browser is currently in fullscreen mode,
 // then it should exit and vice versa.
 function toggleFullScreen() {
+  playsinline = !playsinline;
   if (iOS) {
     video.webkitEnterFullscreen();
     video.enterFullscreen();
   }
-  video.setAttribute("playsinline", playsinline);
+  video.setAttribute("playsinline", !video);
   if (document.fullscreenElement) {
     document.exitFullscreen();
     console.log("exit full");
