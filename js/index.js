@@ -35,6 +35,7 @@ const playbackText = document.getElementById("playbackText");
 
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const isMobile = navigator.userAgentData.mobile;
 var firstPlay = true;
 var cancelControl = true;
 var onCamera = false;
@@ -117,6 +118,16 @@ function togglePlay() {
     } else {
       isPaused = true;
       video.pause();
+    }
+  }
+  if (isMobile) {
+    console.log(1);
+    if (video.paused) {
+      showControls();
+    } else {
+      setTimeout(() => {
+        hideControls();
+      }, 2000);
     }
   }
 }
@@ -574,9 +585,9 @@ if (video.readyState > 0) {
 
 // Add eventlisteners here
 playButton.addEventListener(mytap, togglePlay);
-toggleControl.addEventListener(mytap, updateToggleControl);
-capture.addEventListener(mytap, toggleCapture);
-lock.addEventListener(mytap, toggleLock);
+toggleControl.addEventListener("click", updateToggleControl);
+capture.addEventListener("click", toggleCapture);
+lock.addEventListener("click", toggleLock);
 video.addEventListener("play", updatePlayButton);
 video.addEventListener("pause", updatePlayButton);
 video.addEventListener("loadedmetadata", initializeVideo);
@@ -584,7 +595,7 @@ video.addEventListener("timeupdate", updateTimeElapsed);
 video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("volumechange", updateVolumeIcon);
 video.addEventListener(mytap, togglePlay);
-video.addEventListener(mytap, animatePlayback);
+video.addEventListener("click", animatePlayback);
 video.addEventListener("mouseenter", showControls);
 video.addEventListener("mouseleave", hideControls);
 videoControls.addEventListener("mouseenter", showControls);
@@ -592,10 +603,10 @@ videoControls.addEventListener("mouseleave", hideControls);
 seek.addEventListener("mousemove", updateSeekTooltip);
 seek.addEventListener("input", skipAhead);
 volume.addEventListener("input", updateVolume);
-volumeButton.addEventListener(mytap, toggleMute);
-fullscreenButton.addEventListener(mytap, toggleFullScreen);
+volumeButton.addEventListener("click", toggleMute);
+fullscreenButton.addEventListener("click", toggleFullScreen);
 videoContainer.addEventListener("fullscreenchange", updateFullscreenButton);
-pipButton.addEventListener(mytap, togglePip);
+pipButton.addEventListener("click", togglePip);
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!("pictureInPictureEnabled" in document)) {
