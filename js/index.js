@@ -1,5 +1,5 @@
 import { chain } from "https://cdn.jsdelivr.net/npm/@shlappas/itertools@2.1.1/dist/index.esm.js";
-console.log(1);
+
 const video = document.getElementById("video");
 const videoControls = document.getElementById("video-controls");
 const playButton = document.getElementById("play");
@@ -33,7 +33,6 @@ const playbackSlider = document.getElementById("playbackRate");
 const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
-console.log(navigator.userAgent);
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const isMobile =
@@ -99,7 +98,6 @@ const camera = new Camera(cameraElement, {
 // cameraElement.style.display = "inline";
 
 const videoWorks = !!document.createElement("video").canPlayType;
-console.log(iOS);
 if (videoWorks && !iOS) {
   video.controls = false;
   videoControls.classList.remove("hidden");
