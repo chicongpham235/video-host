@@ -69,7 +69,6 @@ const camera = new Camera(cameraElement, {
   // width: 1280,
   // height: 720,
 });
-console.log(cameraElement);
 
 updateToggleControl();
 
@@ -155,6 +154,7 @@ async function updateToggleControl() {
     isPaused = false;
     faceMesh.onResults(findFaceMesh);
   }
+  console.log(cameraElement);
   if (onCamera) {
     capture.setAttribute("data-title", "Hide Camera");
     cameraElement.style.display = "inline";
