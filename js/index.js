@@ -35,7 +35,6 @@ const playbackText = document.getElementById("playbackText");
 
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
-const isMobile = navigator.userAgentData.mobile;
 var firstPlay = true;
 var cancelControl = true;
 var onCamera = false;
@@ -118,16 +117,6 @@ function togglePlay() {
     } else {
       isPaused = true;
       video.pause();
-    }
-  }
-  if (isMobile) {
-    console.log(1);
-    if (video.paused) {
-      showControls();
-    } else {
-      setTimeout(() => {
-        hideControls();
-      }, 2000);
     }
   }
 }
