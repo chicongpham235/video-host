@@ -300,6 +300,7 @@ function animatePlayback() {
     }
   );
 }
+console.log("test");
 
 // toggleFullScreen toggles the full screen state of the video
 // If the browser is currently in fullscreen mode,
