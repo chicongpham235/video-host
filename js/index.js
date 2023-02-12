@@ -388,145 +388,145 @@ function keyboardShortcuts(event) {
   }
 }
 
-// function findFaceMesh(results) {
-//   console.log(1);
-//   canvasElement.width = camera.h.width;
-//   canvasElement.height = camera.h.height;
-//   canvasCtx.save();
-//   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-//   canvasCtx.drawImage(
-//     results.image,
-//     0,
-//     0,
-//     canvasElement.width,
-//     canvasElement.height
-//   );
+function findFaceMesh(results) {
+  console.log(1);
+  canvasElement.width = camera.h.width;
+  canvasElement.height = camera.h.height;
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+    results.image,
+    0,
+    0,
+    canvasElement.width,
+    canvasElement.height
+  );
 
-//   let le = 0,
-//     lex = 0,
-//     ley = 0,
-//     re = 0,
-//     rex = 0,
-//     rey = 0,
-//     lf = 0,
-//     lfx = 0,
-//     lfy = 0,
-//     rf = 0,
-//     rfx = 0,
-//     rfy = 0,
-//     lpx = 0,
-//     lpy = 0,
-//     fdx = 0,
-//     fdy = 0;
-//   let faces = [];
+  let le = 0,
+    lex = 0,
+    ley = 0,
+    re = 0,
+    rex = 0,
+    rey = 0,
+    lf = 0,
+    lfx = 0,
+    lfy = 0,
+    rf = 0,
+    rfx = 0,
+    rfy = 0,
+    lpx = 0,
+    lpy = 0,
+    fdx = 0,
+    fdy = 0;
+  let faces = [];
 
-//   if (results.multiFaceLandmarks) {
-//     for (const landmarks of results.multiFaceLandmarks) {
-//       if (draw == true) {
-//         drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION, {
-//           color: "#C0C0C070",
-//           lineWidth: 1,
-//         });
-//       }
-//       let l = {};
-//       for (let index of LEFT_EYE_INDEXES) {
-//         x = parseInt(landmarks[index].x * camera.h.width);
-//         y = parseInt(landmarks[index].y * camera.h.height);
-//         if (index == 263) {
-//           l[index] = [x, y];
-//           le = x;
-//           lex = x;
-//           ley = y;
-//         }
-//       }
-//       let r = {};
-//       for (let index of RIGHT_EYE_INDEXES) {
-//         x = parseInt(landmarks[index].x * camera.h.width);
-//         y = parseInt(landmarks[index].y * camera.h.height);
-//         if (index == 33) {
-//           r[index] = [x, y];
-//           re = x;
-//           rex = x;
-//           rey = y;
-//         }
-//       }
-//       let d = {};
-//       for (let index of FACE_OVAL_INDEXES) {
-//         x = parseInt(landmarks[index].x * camera.h.width);
-//         y = parseInt(landmarks[index].y * camera.h.height);
-//         d[index] = [x, y];
-//         if (index == 127) {
-//           lf = x;
-//           lfx = x;
-//           lfy = y;
-//         }
-//         if (index == 356) {
-//           rf = x;
-//           rfx = x;
-//           rfy = y;
-//         }
-//         if (index == 152) {
-//           fdy = y;
-//         }
-//       }
-//       let lp = {};
-//       for (let index of LIPS_INDEXES) {
-//         x = parseInt(landmarks[index].x * camera.h.width);
-//         y = parseInt(landmarks[index].y * camera.h.height);
-//         lp[index] = [x, y];
-//         if (index == 14) {
-//           lpy = y;
-//         }
-//       }
+  if (results.multiFaceLandmarks) {
+    for (const landmarks of results.multiFaceLandmarks) {
+      if (draw == true) {
+        drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION, {
+          color: "#C0C0C070",
+          lineWidth: 1,
+        });
+      }
+      let l = {};
+      for (let index of LEFT_EYE_INDEXES) {
+        x = parseInt(landmarks[index].x * camera.h.width);
+        y = parseInt(landmarks[index].y * camera.h.height);
+        if (index == 263) {
+          l[index] = [x, y];
+          le = x;
+          lex = x;
+          ley = y;
+        }
+      }
+      let r = {};
+      for (let index of RIGHT_EYE_INDEXES) {
+        x = parseInt(landmarks[index].x * camera.h.width);
+        y = parseInt(landmarks[index].y * camera.h.height);
+        if (index == 33) {
+          r[index] = [x, y];
+          re = x;
+          rex = x;
+          rey = y;
+        }
+      }
+      let d = {};
+      for (let index of FACE_OVAL_INDEXES) {
+        x = parseInt(landmarks[index].x * camera.h.width);
+        y = parseInt(landmarks[index].y * camera.h.height);
+        d[index] = [x, y];
+        if (index == 127) {
+          lf = x;
+          lfx = x;
+          lfy = y;
+        }
+        if (index == 356) {
+          rf = x;
+          rfx = x;
+          rfy = y;
+        }
+        if (index == 152) {
+          fdy = y;
+        }
+      }
+      let lp = {};
+      for (let index of LIPS_INDEXES) {
+        x = parseInt(landmarks[index].x * camera.h.width);
+        y = parseInt(landmarks[index].y * camera.h.height);
+        lp[index] = [x, y];
+        if (index == 14) {
+          lpy = y;
+        }
+      }
 
-//       let face = [];
-//       for (let lm of landmarks) {
-//         (x = parseInt(lm.x * camera.h.width)),
-//           (y = parseInt(lm.y * camera.h.height));
-//         face.push([x, y]);
-//       }
-//       faces.push(face);
-//     }
-//   }
+      let face = [];
+      for (let lm of landmarks) {
+        (x = parseInt(lm.x * camera.h.width)),
+          (y = parseInt(lm.y * camera.h.height));
+        face.push([x, y]);
+      }
+      faces.push(face);
+    }
+  }
 
-//   if (faces.length != 0) {
-//     if (lfy - ley > 15 && rfy - rey > 15) {
-//       if (video.playbackRate < 2) {
-//         if (!isLocked) defaultRate += 0.02;
-//       }
-//     } else if (lfy - ley < -1 && rfy - rey < -1) {
-//       if (video.playbackRate > 0.25) {
-//         if (!isLocked) defaultRate -= 0.02;
-//       }
-//     } else if (re - lf < 10) {
-//       if (video.currentTime < video.duration) video.currentTime += 0.5;
-//     } else if (rf - le < 10) {
-//       if (video.currentTime > 0) video.currentTime -= 0.5;
-//     } else {
-//       if (!isLocked) defaultRate = 1;
-//       if (isPaused == false) video.play();
-//     }
-//     defaultRate = Number(defaultRate.toFixed(2));
-//     if (defaultRate < 0.2) defaultRate = 0.2;
-//     if (defaultRate > 2) defaultRate = 2;
-//     if ([0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2].includes(defaultRate)) {
-//       video.playbackRate = defaultRate;
-//       playbackSlider.value = defaultRate * 100;
-//       playbackContent.setAttribute(
-//         "data-title",
-//         "Playback rate: " + defaultRate
-//       );
-//     }
-//   } else {
-//     video.pause();
-//   }
+  if (faces.length != 0) {
+    if (lfy - ley > 15 && rfy - rey > 15) {
+      if (video.playbackRate < 2) {
+        if (!isLocked) defaultRate += 0.02;
+      }
+    } else if (lfy - ley < -1 && rfy - rey < -1) {
+      if (video.playbackRate > 0.25) {
+        if (!isLocked) defaultRate -= 0.02;
+      }
+    } else if (re - lf < 10) {
+      if (video.currentTime < video.duration) video.currentTime += 0.5;
+    } else if (rf - le < 10) {
+      if (video.currentTime > 0) video.currentTime -= 0.5;
+    } else {
+      if (!isLocked) defaultRate = 1;
+      if (isPaused == false) video.play();
+    }
+    defaultRate = Number(defaultRate.toFixed(2));
+    if (defaultRate < 0.2) defaultRate = 0.2;
+    if (defaultRate > 2) defaultRate = 2;
+    if ([0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2].includes(defaultRate)) {
+      video.playbackRate = defaultRate;
+      playbackSlider.value = defaultRate * 100;
+      playbackContent.setAttribute(
+        "data-title",
+        "Playback rate: " + defaultRate
+      );
+    }
+  } else {
+    video.pause();
+  }
 
-//   if (video.playbackRate != 1)
-//     playbackText.innerHTML = "Playback Rate: " + video.playbackRate;
-//   else playbackText.innerHTML = "";
+  if (video.playbackRate != 1)
+    playbackText.innerHTML = "Playback Rate: " + video.playbackRate;
+  else playbackText.innerHTML = "";
 
-//   canvasCtx.restore();
-// }
+  canvasCtx.restore();
+}
 
 if (video.readyState > 0) {
   initializeVideo();
