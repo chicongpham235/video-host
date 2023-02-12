@@ -573,6 +573,7 @@ if (video.readyState > 0) {
 
 // Add eventlisteners here
 playButton.addEventListener("click", togglePlay);
+playButton.addEventListener("touchstart", togglePlay);
 toggleControl.addEventListener("click", updateToggleControl);
 capture.addEventListener("click", toggleCapture);
 lock.addEventListener("click", toggleLock);
@@ -583,6 +584,7 @@ video.addEventListener("timeupdate", updateTimeElapsed);
 video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("volumechange", updateVolumeIcon);
 video.addEventListener("click", togglePlay);
+video.addEventListener("touchstart", togglePlay);
 video.addEventListener("click", animatePlayback);
 video.addEventListener("mouseenter", showControls);
 video.addEventListener("mouseleave", hideControls);
