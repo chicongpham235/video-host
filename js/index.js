@@ -69,6 +69,7 @@ const camera = new Camera(cameraElement, {
   // width: 1280,
   // height: 720,
 });
+console.log(cameraElement);
 
 updateToggleControl();
 
