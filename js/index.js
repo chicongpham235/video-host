@@ -152,10 +152,9 @@ async function updateToggleControl() {
     capture.disabled = false;
     toastr.success("Video can be controlled!");
     isPaused = false;
-    console.log(1);
-    console.log(camera.h.facingMode);
     faceMesh.onResults(findFaceMesh);
   }
+  console.log(camera.g?.active);
   if (onCamera) {
     capture.setAttribute("data-title", "Hide Camera");
     cameraElement.style.display = "inline";
