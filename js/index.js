@@ -310,10 +310,10 @@ function animatePlayback() {
 // then it should exit and vice versa.
 function toggleFullScreen() {
   playsinline = !playsinline;
-  if (iOS) {
-    video.webkitEnterFullscreen();
-    video.enterFullscreen();
-  }
+  // if (iOS) {
+  //   video.webkitEnterFullscreen();
+  //   video.enterFullscreen();
+  // }
   video.setAttribute("playsinline", !video);
   if (document.fullscreenElement) {
     document.exitFullscreen();
