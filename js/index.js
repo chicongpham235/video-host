@@ -153,7 +153,7 @@ async function updateToggleControl() {
     toastr.success("Video can be controlled!");
     isPaused = false;
     console.log(1);
-    console.log(camera.h);
+    console.log(camera.h.facingMode);
     faceMesh.onResults(findFaceMesh);
   }
   if (onCamera) {
