@@ -324,6 +324,7 @@ function toggleFullScreen() {
     console.log("enter full");
   }
   if (iOS) video.playsinline = !video.playsinline;
+  console.log(video.playsinline);
 }
 
 // updateFullscreenButton changes the icon of the full screen button
