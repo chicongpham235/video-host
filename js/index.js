@@ -62,6 +62,7 @@ const solutionOptions = {
 
 faceMesh.setOptions(solutionOptions);
 
+cameraElement.setAttribute("playsinline", true);
 const camera = new Camera(cameraElement, {
   onFrame: async () => {
     await faceMesh.send({ image: cameraElement });
