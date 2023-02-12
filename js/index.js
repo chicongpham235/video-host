@@ -98,6 +98,7 @@ const camera = new Camera(cameraElement, {
 // cameraElement.style.display = "inline";
 
 const videoWorks = !!document.createElement("video").canPlayType;
+console.log(iOS);
 if (videoWorks && !iOS) {
   video.controls = false;
   videoControls.classList.remove("hidden");
