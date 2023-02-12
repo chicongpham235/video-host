@@ -34,7 +34,6 @@ const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
 const mytap = window.ontouchstart === null ? "touchstart" : "click";
-console.log(mytap);
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
 var firstPlay = true;
 var cancelControl = true;
