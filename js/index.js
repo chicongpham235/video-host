@@ -33,6 +33,7 @@ const playbackSlider = document.getElementById("playbackRate");
 const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
+const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
 var cancelControl = true;
 var onCamera = false;
 var isLocked = false;
@@ -157,7 +158,6 @@ async function updateToggleControl() {
     isPaused = false;
     faceMesh.onResults(findFaceMesh);
   }
-  console.log(camera.g?.id);
   if (onCamera) {
     capture.setAttribute("data-title", "Hide Camera");
     cameraElement.style.display = "inline";
@@ -188,6 +188,7 @@ function initializeVideo() {
   const time = formatTime(videoDuration);
   duration.innerText = `${time.minutes}:${time.seconds}`;
   duration.setAttribute("datetime", `${time.minutes}m ${time.seconds}s`);
+  if (iOS) volume.style.display = "none";
 }
 
 // updateTimeElapsed indicates how far through the video
