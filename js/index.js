@@ -74,7 +74,7 @@ const camera = new Camera(cameraElement, {
 // camera.start();
 // cameraElement.style.display = "inline";
 
-video.setAttribute("autoplay", "autoplay");
+video.autoplay = true;
 video.pause();
 
 const videoWorks = !!document.createElement("video").canPlayType;
@@ -323,6 +323,7 @@ function toggleFullScreen() {
     videoContainer.requestFullscreen();
     console.log("enter full");
   }
+  if (iOS) video.playsinline = !video.playsinline;
 }
 
 // updateFullscreenButton changes the icon of the full screen button
