@@ -154,7 +154,6 @@ async function updateToggleControl() {
     isPaused = false;
     faceMesh.onResults(findFaceMesh);
   }
-  console.log(camera.g?.active);
   if (onCamera) {
     capture.setAttribute("data-title", "Hide Camera");
     cameraElement.style.display = "inline";
@@ -386,6 +385,7 @@ function keyboardShortcuts(event) {
 }
 
 function findFaceMesh(results) {
+  console.log(1);
   canvasElement.width = camera.h.width;
   canvasElement.height = camera.h.height;
   canvasCtx.save();
