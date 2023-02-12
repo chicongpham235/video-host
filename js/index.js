@@ -92,7 +92,7 @@ const camera = new Camera(cameraElement, {
 // cameraElement.style.display = "inline";
 
 video.autoplay = true;
-// video.pause();
+video.pause();
 
 const videoWorks = !!document.createElement("video").canPlayType;
 if (videoWorks) {
