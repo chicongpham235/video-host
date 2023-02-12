@@ -74,7 +74,8 @@ const camera = new Camera(cameraElement, {
 // camera.start();
 // cameraElement.style.display = "inline";
 
-// updateToggleControl();
+video.setAttribute("autoplay", "autoplay");
+video.pause();
 
 const videoWorks = !!document.createElement("video").canPlayType;
 if (videoWorks) {
@@ -189,6 +190,7 @@ function initializeVideo() {
   duration.innerText = `${time.minutes}:${time.seconds}`;
   duration.setAttribute("datetime", `${time.minutes}m ${time.seconds}s`);
   if (iOS) volume.style.display = "none";
+  updateToggleControl();
 }
 
 // updateTimeElapsed indicates how far through the video
