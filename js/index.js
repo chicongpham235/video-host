@@ -313,8 +313,10 @@ function toggleFullScreen() {
   } else if (videoContainer.webkitRequestFullscreen) {
     // Need this to support Safari
     videoContainer.webkitRequestFullscreen();
+    console.log(1);
   } else {
     videoContainer.requestFullscreen();
+    console.log(2);
   }
 }
 
