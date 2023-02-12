@@ -308,9 +308,11 @@ console.log("test");
 function toggleFullScreen() {
   if (document.fullscreenElement) {
     document.exitFullscreen();
+    console.log("full");
   } else if (document.webkitFullscreenElement) {
     // Need this to support Safari
     document.webkitExitFullscreen();
+    console.log("webkit full");
   } else if (videoContainer.webkitRequestFullscreen) {
     // Need this to support Safari
     videoContainer.webkitRequestFullscreen();
@@ -319,6 +321,7 @@ function toggleFullScreen() {
     videoContainer.requestFullscreen();
     console.log(2);
   }
+  console.log("hehe");
 }
 
 // updateFullscreenButton changes the icon of the full screen button
