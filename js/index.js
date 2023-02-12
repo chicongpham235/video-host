@@ -119,6 +119,7 @@ function togglePlay() {
       video.pause();
     }
   }
+  if (video.paused) showControls();
 }
 
 // updatePlayButton updates the playback icon and tooltip
