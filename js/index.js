@@ -34,7 +34,7 @@ const playbackContent = document.getElementById("playbackContent");
 const playbackText = document.getElementById("playbackText");
 
 const iOS = !window.MSStream && /iPad|iPhone|iPod/.test(navigator.userAgent);
-var playsinline = false;
+var playsinline = true;
 var cancelControl = true;
 var onCamera = false;
 var isLocked = false;
@@ -64,7 +64,6 @@ const solutionOptions = {
 
 faceMesh.setOptions(solutionOptions);
 
-video.setAttribute("playsinline", playsinline);
 cameraElement.setAttribute("playsinline", true);
 const camera = new Camera(cameraElement, {
   onFrame: async () => {
@@ -309,8 +308,10 @@ function animatePlayback() {
 // If the browser is currently in fullscreen mode,
 // then it should exit and vice versa.
 function toggleFullScreen() {
-  console.log(playsinline);
-  if (iOS) playsinline = !playsinline;
+  if (iOS) {
+    video.webkitEnterFullscreen();
+    video.enterFullscreen();
+  }
   video.setAttribute("playsinline", playsinline);
   if (document.fullscreenElement) {
     document.exitFullscreen();
