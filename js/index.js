@@ -570,7 +570,7 @@ if (video.readyState > 0) {
 }
 
 function tapScreen() {
-  if (firstPlay && iOS) {
+  if (firstPlay && isMobile) {
     video.play();
     video.controls = false;
     videoControls.classList.remove("hidden");
