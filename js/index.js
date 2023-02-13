@@ -573,6 +573,7 @@ function tapScreen() {
   if (firstPlay && iOS) {
     video.play();
     video.controls = false;
+    video.muted = false;
     videoControls.classList.remove("hidden");
     firstPlay = false;
   }
