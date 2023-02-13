@@ -210,7 +210,7 @@ function initializeVideo() {
   const time = formatTime(videoDuration);
   duration.innerText = `${time.minutes}:${time.seconds}`;
   duration.setAttribute("datetime", `${time.minutes}m ${time.seconds}s`);
-  if (browser == "safari") {
+  if (browser == "safari" && !iOS) {
     video.muted = true;
     volume.value = 0;
     volumeIcons[0].classList.remove("hidden");
